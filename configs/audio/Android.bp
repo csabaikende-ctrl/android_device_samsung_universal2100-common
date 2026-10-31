@@ -12,8 +12,22 @@ prebuilt_defaults {
 prebuilt_etc {
     name: "audio_effects.exynos2100",
     defaults: ["audio_etc_defaults.exynos2100"],
-    src: "audio_effects.xml",
+    src: select(soong_config_variable("exynos2100", "viper4android"), {
+        true: ":audio_effects_v4a.exynos2100_gen",
+        default: "audio_effects.xml",
+    }),
     filename: "audio_effects.xml",
+}
+
+// audio_effects.xml with the ViPER4Android RE driver registered, used when
+// vendor/viper4android is present (exynos2100.viper4android).
+genrule {
+    name: "audio_effects_v4a.exynos2100_gen",
+    srcs: ["audio_effects.xml"],
+    out: ["audio_effects_v4a.xml"],
+    cmd: "sed -e '/<libraries>/a\\        <library name=\"v4a_re\" path=\"libv4a_re.so\"/>' " +
+        "-e '/<effects>/a\\        <effect name=\"v4a_standard_re\" library=\"v4a_re\" uuid=\"90380da3-8536-4744-a6a3-5731970e640f\"/>' " +
+        "$(in) > $(out)",
 }
 
 prebuilt_etc {

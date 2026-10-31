@@ -48,6 +48,12 @@ PRODUCT_PACKAGES += \
     audio_effects.exynos2100 \
     audio_policy_config.exynos2100
 
+# ViPER4Android RE (optional)
+ifneq ($(wildcard vendor/viper4android/config.mk),)
+$(call inherit-product, vendor/viper4android/config.mk)
+$(call soong_config_set_bool,exynos2100,viper4android,true)
+endif
+
 PRODUCT_PACKAGES += \
     sound_trigger.primary.exynos2100
 
