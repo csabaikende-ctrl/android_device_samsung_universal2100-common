@@ -183,7 +183,8 @@ WIFI_HIDL_FEATURE_DUAL_INTERFACE              := true
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION                        := VER_0_8_X
 
-$(call soong_config_set_bool,wpa_supplicant_8,board_wlan_bcmdhd_sae,true)
+# String, as wpa_supplicant_8 of the Android 16 base (LineageOS 23.0) expects
+$(call soong_config_set,wpa_supplicant_8,board_wlan_bcmdhd_sae,true)
 
 ## Inherit proprietary vendor configuration
 include vendor/samsung/universal2100-common/BoardConfigVendor.mk
