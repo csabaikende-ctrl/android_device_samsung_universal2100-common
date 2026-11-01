@@ -45,9 +45,6 @@ TARGET_KERNEL_CONFIG := \
 
 TARGET_KERNEL_NO_GCC := true
 
-# Kernel build (LineageOS kernel.mk, from vendor/lineage)
-include vendor/lineage/config/BoardConfigKernel.mk
-
 ## DTB & DTBO
 BOARD_DTB_CFG := $(COMMON_PATH)/configs/kernel/$(TARGET_SOC).cfg
 BOARD_DTBO_CFG := $(COMMON_PATH)/configs/kernel/$(TARGET_DEVICE).cfg
@@ -193,3 +190,6 @@ include vendor/samsung/universal2100-common/BoardConfigVendor.mk
 
 ## Inherit Samsung SLSI board common configuration
 include hardware/samsung_slsi-linaro/config/BoardConfigCommon.mk
+
+## Kernel build (LineageOS kernel.mk from vendor/lineage), read after the board configuration
+include vendor/lineage/config/BoardConfigKernel.mk

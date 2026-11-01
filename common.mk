@@ -6,6 +6,9 @@
 
 COMMON_PATH := device/samsung/universal2100-common
 
+# Platform (AOSPA checks it while reading the product configuration)
+TARGET_BOARD_PLATFORM := universal2100
+
 # Inherit non-AB Device
 $(call inherit-product, $(SRC_TARGET_DIR)/product/non_ab_device.mk)
 
