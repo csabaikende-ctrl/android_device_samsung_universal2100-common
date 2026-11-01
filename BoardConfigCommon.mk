@@ -45,6 +45,9 @@ TARGET_KERNEL_CONFIG := \
 
 TARGET_KERNEL_NO_GCC := true
 
+# Kernel build (LineageOS kernel.mk, from vendor/lineage)
+include vendor/lineage/config/BoardConfigKernel.mk
+
 ## DTB & DTBO
 BOARD_DTB_CFG := $(COMMON_PATH)/configs/kernel/$(TARGET_SOC).cfg
 BOARD_DTBO_CFG := $(COMMON_PATH)/configs/kernel/$(TARGET_DEVICE).cfg
@@ -129,6 +132,9 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
 DEVICE_MANIFEST_FILE += $(COMMON_PATH)/manifest.xml
 DEVICE_MATRIX_FILE += $(COMMON_PATH)/compatibility_matrix.xml
 
+## PowerShare
+TARGET_POWERSHARE_NODE := /sys/class/power_supply/battery/wc_tx_en
+
 ## Properties
 TARGET_PRODUCT_PROP += $(COMMON_PATH)/product.prop
 TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
@@ -156,7 +162,6 @@ BOARD_SECCOMP_POLICY += $(COMMON_PATH)/seccomp
 ## SELinux
 BOARD_SEPOLICY_TEE_FLAVOR := teegris
 include device/samsung_slsi/sepolicy/sepolicy.mk
-include device/lineage/sepolicy/exynos/sepolicy.mk
 
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 

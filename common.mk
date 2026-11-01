@@ -136,9 +136,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey
 
-# DOZE
+# Doze
 PRODUCT_PACKAGES += \
-    SamsungDoze
+    ParanoidDoze
+
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    ro.sensor.pickup=android.sensor.pick_up_gesture \
+    ro.sensor.proximity=true
 
 # EPIC
 PRODUCT_PACKAGES += \
@@ -315,7 +319,7 @@ PRODUCT_PACKAGES += \
 
 # PowerShare
 PRODUCT_PACKAGES += \
-    vendor.lineage.powershare-service.samsung
+    vendor.aospa.powershare-service
 
 # RIL
 PRODUCT_PACKAGES += \
@@ -342,9 +346,6 @@ AB_OTA_UPDATER := false
 PRODUCT_SOONG_NAMESPACES += bootable/deprecated-ota
 
 # Touch features
-PRODUCT_PACKAGES += \
-    vendor.lineage.touch-service.samsung
-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
 
